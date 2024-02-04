@@ -9,8 +9,12 @@ export class IngestorController {
 
     @Post()
     async create(@Body() createIngestorDto: CreateIngestorDto) {
-        const log = await this.ingestorService.create(createIngestorDto);
+        try {
+            const ok = await this.ingestorService.create(createIngestorDto);
 
-        return log;
+            return ok;
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }
