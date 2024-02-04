@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { Log } from './ingestor/entities/ingestor.entity';
 import { IngestorModule } from './ingestor/ingestor.module';
+import { NatsModule } from './nats/nats.module';
+import { WorkersModule } from './workers/workers.module';
 
 @Module({
     imports: [
@@ -18,6 +20,8 @@ import { IngestorModule } from './ingestor/ingestor.module';
             schema: 'public',
             synchronize: true, //! Don't use this in production
         }),
+        NatsModule,
+        WorkersModule,
     ],
 })
 export class AppModule {}
